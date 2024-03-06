@@ -140,8 +140,23 @@ Adafruit_ADXL345_Unified::Adafruit_ADXL345_Unified(uint8_t clock, uint8_t miso,
                                                    int32_t sensorID) {
   _sensorID = sensorID;
   _range = ADXL345_RANGE_2_G;
-  spi_dev = new Adafruit_SPIDevice(cs, clock, miso, mosi, 1000000,
-                                   SPI_BITORDER_MSBFIRST, SPI_MODE1);
+  spi_dev = new Adafruit_SPIDevice(cs, clock, miso, mosi, 5000000,
+                                   SPI_BITORDER_MSBFIRST, SPI_MODE3);
+}
+
+/**************************************************************************/
+/*!
+    @brief  Instantiates a new ADXL345 class in SPI mode
+    @param cs The pin number for CS, the SPI Chip Select line
+    @param sensorSPI An instance of the SPIClass for the bus you want to use
+    @param sensorID A unique ID to use to differentiate the sensor from others
+*/
+/**************************************************************************/
+Adafruit_ADXL345_Unified::Adafruit_ADXL345_Unified(uint8_t cs, SPIClass *sensorSPI,
+                                                   int32_t sensorID) {
+  _sensorID = sensorID;
+  _range = ADXL345_RANGE_2_G;
+  spi_dev = new Adafruit_SPIDevice(cs, 5000000, SPI_BITORDER_MSBFIRST, SPI_MODE3, sensorSPI);
 }
 
 /**************************************************************************/

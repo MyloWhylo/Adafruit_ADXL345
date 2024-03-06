@@ -127,8 +127,13 @@ typedef enum {
 class Adafruit_ADXL345_Unified : public Adafruit_Sensor {
 public:
   Adafruit_ADXL345_Unified(int32_t sensorID = -1);
+
   Adafruit_ADXL345_Unified(uint8_t clock, uint8_t miso, uint8_t mosi,
                            uint8_t cs, int32_t sensorID = -1);
+
+  Adafruit_ADXL345_Unified(uint8_t cs, SPIClass *sensorSPI,
+                           int32_t sensorID = -1);
+
   ~Adafruit_ADXL345_Unified();
 
   bool begin(uint8_t addr = ADXL345_DEFAULT_ADDRESS);
